@@ -1,0 +1,61 @@
+$primary-color: #444;
+$secondary-color:#eece1a;
+$show-home-image:true;
+$home-image:url(../../images/acer.jpg);
+$backround-opacity:0.8;
+
+@mixin easeout  {
+    transition: all 0.5s ease-out;
+}
+
+@mixin background {
+    @if $show-home-image{
+        &#bg-img{
+            background: $home-image;
+            background-attachment: fixed;
+            background-size: cover;
+
+            &:after{
+                content: '';
+                position: absolute;
+                top:0;
+                right:0;
+                height: 100%;
+                width:100%;
+                z-index:-1;
+                background: rgba($primary-color,$backround-opacity);
+            }
+        }
+    }
+}
+
+//Set text color
+@function set-text-color($color){
+    @if (lightness($color)>40){
+        @return #000;
+    }@else{
+        @return #fff;
+    }
+}
+
+//media query mixins
+@mixin  mediaSm {
+    @media screen and (max-width: 500px){
+        @content;
+    }
+}
+@mixin  mediaMd {
+    @media screen and (max-width: 768px){
+        @content;
+    }
+}
+@mixin  mediaLg {
+    @media screen and (min-width:769px) and (max-width: 1170px){
+        @content;
+    }
+}
+@mixin  mediaXl {
+    @media screen and (min-width: 1171){
+        @content;
+    }
+}
