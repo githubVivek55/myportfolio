@@ -20,7 +20,10 @@ export default class Home extends Component {
           >
             <i className="fab fa-linkedin fa-2x" />
           </a>
-          <a href="https://github.com/githubVivek55" target="blank">
+          <a
+            href="https://github.com/githubVivek55?tab=repositories"
+            target="blank"
+          >
             <i className="fab fa-github fa-2x" />
           </a>
         </div>
