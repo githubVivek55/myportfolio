@@ -20,6 +20,7 @@
     "build-css": "node-sass-chokidar src/styles/sass/ -o src/styles/css",
     "watch-css": "npm run build-css && node-sass-chokidar src/styles/sass/ -o src/styles/ --watch --recursive",
     "start": "npm-run-all -p watch-css start-js",
-    "build": "npm-run-all build-css build-js"
+    "build": "npm-run-all build-css build-js",
+    "deploy": "gh-pages -d build"
   }
 }
