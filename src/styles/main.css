@@ -102,7 +102,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5; }
   body#bg-img {
-    background: url(../../images/acer.jpg);
+    background: url("../../images/acer.jpg");
     background-attachment: fixed;
     background-size: cover; }
     body#bg-img:after {
@@ -139,7 +139,7 @@ header {
 
 main {
   padding: 4rem;
-  min-height: calc(100vh-60px); }
+  min-height: calc(100vh - 60px); }
   main .icons {
     margin-top: 1rem; }
     main .icons a {
@@ -166,7 +166,7 @@ main {
 
 .bio {
   grid-area: bio;
-  font-size: 1.5rem; }
+  font-size: 1rem; }
 
 .job-1 {
   grid-area: job1; }
@@ -201,7 +201,8 @@ main {
   margin-bottom: 0.3rem; }
   .btn:hover, .btn-dark:hover, .btn-light:hover {
     background: #eece1a;
-    color: #000; }
+    color: #000;
+    transition: all 0.5s ease-out; }
 
 .btn-dark {
   background: black;

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 export default class Menu extends Component {
   constructor () {
@@ -57,17 +58,17 @@ export default class Menu extends Component {
             <div className="portrait" />
           </div>
           <ul className="menu-nav">
-            <li className="menu-item current">
-              <a href="/" className="menu-link">Home</a>
+            <li className="menu-item current" onClick={this.toggleMenu}>
+              <Link to="/" className="menu-link">Home</Link>
             </li>
-            <li className="menu-item">
-              <a href="about.html" className="menu-link">About me</a>
+            <li className="menu-item" onClick={this.toggleMenu}>
+              <Link to="/about" className="menu-link">About me</Link>
             </li>
-            <li className="menu-item">
-              <a href="work.html" className="menu-link">My Work</a>
+            <li className="menu-item" onClick={this.toggleMenu}>
+              <Link to="/work" className="menu-link">My Work</Link>
             </li>
-            <li className="menu-item">
-              <a href="contact.html" className="menu-link">How to reach me</a>
+            <li className="menu-item" onClick={this.toggleMenu}>
+              <Link to="/contact" className="menu-link">How to reach me</Link>
             </li>
           </ul>
         </nav>

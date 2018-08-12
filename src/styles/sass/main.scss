@@ -45,7 +45,7 @@ header{
 }
 main{
     padding: 4rem;
-    min-height: calc(100vh-60px);
+    min-height: calc(100vh - 60px);
     .icons{
         margin-top: 1rem;
 
@@ -84,7 +84,7 @@ main{
 }
 .bio{
     grid-area: bio;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 .job-1{
     grid-area: job1;
@@ -126,7 +126,7 @@ main{
     &:hover{
         background: $secondary-color;
         color:set-text-color($secondary-color);
-
+        @include easeout
     }
 }
 
