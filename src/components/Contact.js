@@ -7,7 +7,7 @@ export default class Contact extends Component {
         <main id="home">
           <h1 className="lg-heading">
             Contact
-            <span className="text-secondary">Me</span>
+            <span className="text-secondary"> Me</span>
           </h1>
           <h2 className="sm-heading">This is how you can reach me...</h2>
 

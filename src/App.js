@@ -7,7 +7,7 @@ import PageFooter from './components/PageFooter';
 class App extends Component {
   render () {
     return (
-      <div className="App">
+      <div>
         <header>
           <Menu />
         </header>
