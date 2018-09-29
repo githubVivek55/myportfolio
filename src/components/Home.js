@@ -1,49 +1,53 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+import {connect} from 'react-redux';
+import {getHomeContent} from '../actions/HomeAction';
+import PropTypes from 'prop-types';
 
-export default class Home extends Component {
-  state = {
-    firstName: '',
-    lastName: '',
-    desc: '',
-  };
-
+class Home extends Component {
   componentDidMount () {
-    axios.get ('http://localhost:5000/api/items').then (res => {
-      this.setState ({
-        firstName: res.data[0].firstName,
-        lastName: res.data[0].lastName,
-        desc: res.data[0].desc,
-      });
-    });
+    this.props.getHomeContent ();
   }
   render () {
-    return (
-      <main id="home">
-        <h1 className="lg-heading">
-          {this.state.firstName}
-          <span className="text-secondary"> {this.state.lastName}</span>
-        </h1>
-        <h2 className="sm-heading">{this.state.desc}</h2>
+    const {firstName, lastName, desc} = this.props.data.data;
+    if (firstName === undefined) {
+      return <div>Loading..</div>;
+    } else {
+      return (
+        <main id="home">
+          <h1 className="lg-heading">
+            {firstName}
+            <span className="text-secondary"> {lastName}</span>
+          </h1>
+          <h2 className="sm-heading">{desc}</h2>
 
-        <div className="icons">
-          <a href="https://twitter.com/Vwake5" target="blank">
-            <i className="fab fa-twitter fa-2x" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/vivek-sharma-850141137"
-            target="blank"
-          >
-            <i className="fab fa-linkedin fa-2x" />
-          </a>
-          <a
-            href="https://github.com/githubVivek55?tab=repositories"
-            target="blank"
-          >
-            <i className="fab fa-github fa-2x" />
-          </a>
-        </div>
-      </main>
-    );
+          <div className="icons">
+            <a href="https://twitter.com/Vwake5" target="blank">
+              <i className="fab fa-twitter fa-2x" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/vivek-sharma-850141137"
+              target="blank"
+            >
+              <i className="fab fa-linkedin fa-2x" />
+            </a>
+            <a
+              href="https://github.com/githubVivek55?tab=repositories"
+              target="blank"
+            >
+              <i className="fab fa-github fa-2x" />
+            </a>
+          </div>
+        </main>
+      );
+    }
   }
 }
+Home.propTypes = {
+  getHomeContent: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+  data: state.home,
+});
+
+export default connect (mapStateToProps, {getHomeContent}) (Home);

@@ -1,23 +1,16 @@
 import React, {Component} from 'react';
 import portrait from '../images/portrait.jpg';
-import axios from 'axios';
+import {connect} from 'react-redux';
+import {getAboutme} from '../actions/AboutmeAction';
+import PropTypes from 'prop-types';
 
-export default class About extends Component {
-  state = {
-    bio: '',
-    role: [],
-  };
-
+class About extends Component {
   componentDidMount () {
-    axios.get ('http://localhost:5000/api/items/about').then (res => {
-      this.setState ({
-        bio: res.data[0].bio,
-        role: res.data[0].role,
-      });
-    });
+    this.props.getAboutme ();
   }
   render () {
-    const {bio, role} = this.state;
+    const {bio, role} = this.props.data.data;
+
     if (role === undefined || role.length === 0) {
       return (
         <React.Fragment>
@@ -65,3 +58,13 @@ export default class About extends Component {
     }
   }
 }
+
+About.propTypes = {
+  getAboutme: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+  data: state.Aboutme,
+});
+
+export default connect (mapStateToProps, {getAboutme}) (About);

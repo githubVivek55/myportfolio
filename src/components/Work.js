@@ -1,26 +1,17 @@
 import React, {Component} from 'react';
 import Project from './Project';
-
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {getMyWork} from '../actions/WorkAction';
+import PropTypes from 'prop-types';
 
-export default class Work extends Component {
-  state = {
-    heading: '',
-    subHeading: '',
-    projects: [],
-  };
-
+class Work extends Component {
   componentDidMount () {
-    axios.get ('http://localhost:5000/api/items/mywork').then (res => {
-      this.setState ({
-        heading: res.data[0].heading,
-        subHeading: res.data[0].subHeading,
-        projects: res.data[0].projects,
-      });
-    });
+    this.props.getMyWork ();
   }
   render () {
-    const {heading, subHeading, projects} = this.state;
+    console.log (this.props);
+    const {heading, subHeading, projects} = this.props.data.data;
 
     if (projects === undefined || projects.length === 0) {
       return <React.Fragment><p>Loading..</p></React.Fragment>;
@@ -49,3 +40,13 @@ export default class Work extends Component {
     }
   }
 }
+
+Work.propTypes = {
+  getMyWork: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+  data: state.MyWork,
+});
+
+export default connect (mapStateToProps, {getMyWork}) (Work);
