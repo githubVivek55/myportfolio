@@ -10,7 +10,6 @@ class Work extends Component {
     this.props.getMyWork ();
   }
   render () {
-    console.log (this.props);
     const {heading, subHeading, projects} = this.props.data.data;
 
     if (projects === undefined || projects.length === 0) {

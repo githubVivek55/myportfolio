@@ -18,7 +18,6 @@ class About extends Component {
         </React.Fragment>
       );
     } else {
-      console.log (role);
       return (
         <main id="home">
           <h1 className="lg-heading">

@@ -3,7 +3,6 @@ import emailImg from '../images/email.png';
 
 const Project = props => {
   const {weburl, githuburl, imgurl} = props;
-  console.log (imgurl);
   return (
     <div>
       <div className="item">
