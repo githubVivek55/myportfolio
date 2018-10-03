@@ -3,6 +3,7 @@ var mongoose = require ('mongoose');
 var path = require ('path');
 var bodyparser = require ('body-parser');
 var router = require ('./routes/api/items');
+var proxy = require ('http-proxy-middleware');
 
 const app = express ();
 
@@ -21,6 +22,8 @@ mongoose
 //add routes
 app.use ('/api/items', router);
 
+app.use (proxy ('/api', {target: 'http://localhost:5000/'}));
+
 // app.use('');
 
 //  if (process.env.NODE_ENV === 'production') {
@@ -31,13 +34,13 @@ app.use ('/api/items', router);
 //  }
 
 //Serve static content if in production env
-if(process.env.NODE_ENV === 'production'){
+if (process.env.NODE_ENV === 'production') {
   //set static folder
-  app.use(express.static('build'));
+  app.use (express.static ('build'));
 
-  app.get("*",(req,res)=>{
-    res.sendFile(path.resolve(__dirname,'build','index.html'));
-  })
+  app.get ('*', (req, res) => {
+    res.sendFile (path.resolve (__dirname, 'build', 'index.html'));
+  });
 }
 
 const port = process.env.PORT || 5000;
